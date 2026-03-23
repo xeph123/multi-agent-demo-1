@@ -1,8 +1,0 @@
-{
-  "task_id": "task-2",
-  "description": "spec.md의 내용(로그인, 회원가입, 사용자 목록, API 로그 데이터테이블, 주간 날씨 현황, 사용자 별 TODO LIST)을 바탕으로 서비스의 메인 테마 색상, 타이포그래피 및 디자인 토큰을 설정하고 UI/UX 플로우에 대한 디자인 가이드(design.md)를 작성하라.",
-  "assigned_agent": "designer",
-  "status": "completed",
-  "created_at": "2026-03-23 00:06:00",
-  "completed_at": "2026-03-23 00:10:00"
-}
