@@ -1,0 +1,8 @@
+{
+  "task_id": "task-4-backend",
+  "description": "architecture.md와 spec.md를 참고하여 백엔드 애플리케이션(Node.js/Express 또는 Python/FastAPI)을 구현하라. 로그인, 회원가입, 사용자 목록, 할 일 관리, API 로그, 주간 날씨 캐싱 처리 등 모든 API를 완성하고, /backend 폴더에 소스코드를 작성하라.",
+  "assigned_agent": "backend",
+  "status": "completed",
+  "created_at": "2026-03-23 00:16:00",
+  "completed_at": "2026-03-23 00:20:00"
+}

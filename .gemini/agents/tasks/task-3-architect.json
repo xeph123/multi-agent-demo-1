@@ -1,0 +1,8 @@
+{
+  "task_id": "task-3",
+  "description": "spec.md의 내용을 바탕으로 데이터베이스 스키마와 API 엔드포인트 명세를 작성하고, 프로젝트 구조(백엔드 및 프론트엔드)를 설계하여 architecture.md 파일을 작성하라.",
+  "assigned_agent": "architect",
+  "status": "completed",
+  "created_at": "2026-03-23 00:11:00",
+  "completed_at": "2026-03-23 00:15:00"
+}

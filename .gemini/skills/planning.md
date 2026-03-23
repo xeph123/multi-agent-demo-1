@@ -13,8 +13,9 @@ target_agents: [Product Manager, Orchestrator]
 
 ## 2. 단계별 계획 (Phased Plans)
 - 작업 큐(Task Queue) 관리 및 실행 규칙 (State Management)
-  1. 작업 파일 생성 (Task Generation): 새로운 단계가 시작될 때마다 `.gemini/agents/tasks/` 폴더에 `task-<순번>-<subagent>.json` 파일을 누적 생성하라. 이때, 포함할 지표는 `task_id`, `description`, `assigned_agent`, `status` 외에도 **작업 생성 시간(`created_at`, 한국 시간 기준)** 을 반드시 기록하라.
-  2. 상태 추적: 에이전트의 작업이 완료되거나 실패하면, 파일의 `status`를 `[completed]` 또는 `[failed]`로 업데이트하고, **작업 완료 시간(`completed_at`, 한국 시간 기준)** 을 기록하라. 상태가 검증되면 다음 task JSON 파일을 생성하라.
+  1. 작업 파일 생성 (Task Generation): 새로운 단계가 기획될 때마다 `.gemini/agents/tasks/` 폴더에 `task-<순번>-<subagent>.json` 파일을 누적 생성하라. 초기 `status`는 `pending`으로 설정하고 **작업 생성 시간(`created_at`, 한국 시간 기준)** 을 반드시 기록하라.
+  2. 실행 중 상태 (Running): 하위 에이전트를 셸 명령어로 호출하여 구동시키기 **직전**, 오케스트레이터 스스로 파일 수정 도구를 써서 파일의 `status`를 `running`으로 반드시 업데이트 하라. (작동 중임을 명시하기 위함)
+  3. 상태 추적 (Completion): 서브 프로세스(하위 에이전트 작업)가 끝나면, 서브 에이전트에게 맡기지 말고 **반드시 오케스트레이터가 직접 파일 수정 도구를 사용하여** 파일의 `status`를 `completed` 또는 `failed`로 최종 업데이트하고, **작업 완료 시간(`completed_at`, 한국 시간 기준)** 을 기록하라. 상태가 검증된 후 다음 task JSON 파일을 생성해야 한다.
   3. `task.json` 구조 예시:
      ```json
      {

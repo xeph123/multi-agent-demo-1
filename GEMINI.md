@@ -48,14 +48,14 @@
 ### 주요 명령어 예시
 이 워크스페이스에서는 정의된 에이전트들을 호출하여 작업을 수행합니다.
 
-- **오케스트레이터 호출:**
+- **오케스트레이터 호출 (Non-interactive):**
   ```powershell
-  gemini /orchestrator "새로운 로그인 시스템 구축을 위한 전체 계획을 세워줘"
+  gemini -p "/agents:orchestrator 새로운 로그인 시스템 구축을 위한 전체 계획을 세워줘"
   ```
 
-- **특정 에이전트 호출:**
+- **특정 에이전트 호출 (Non-interactive):**
   ```powershell
-  gemini /frontend "로그인 UI 컴포넌트 생성"
+  gemini -p "/agents:frontend 로그인 UI 컴포넌트 생성" -y
   ```
 
 ### 개발 컨벤션 (Development Conventions)
