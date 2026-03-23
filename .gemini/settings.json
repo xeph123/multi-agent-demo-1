@@ -1,0 +1,13 @@
+{
+  "experimental": {
+    "enableAgents": true
+  },
+  "mcpServers": {
+    "notebooklm": {
+      "command": "npx",
+      "args": [
+        "notebooklm-mcp@latest"
+      ]
+    }
+  }
+}
