@@ -1,26 +1,34 @@
 ---
-name: Advanced Orchestration & Delegation Protocol
-description: Orchestrator가 작업을 계획하고 에이전트에게 위임할 때의 규칙
-target_agents: [Orchestrator]
+name: orchestration-delegation
+description: "에이전트 간 지능적 작업 분해, 문맥 주입 및 병렬 실행 최적화 프로토콜"
+metadata:
+  version: "1.2.0"
+  strategy: "Context-Aware Delegation & Parallel Sync"
 ---
-# Advanced Orchestration & Delegation Protocol (고급 조율 및 위임 프로토콜)
 
-Orchestrator 에이전트가 작업을 계획하고 하위 에이전트에게 위임할 때의 절대 규칙입니다.
+# Orchestration & Delegation Protocol (지능형 조율 및 위임 표준)
 
-## 1. 작업 분해 및 할당 (Phase Decomposition)
-- 작업을 나눌 때는 8가지 전문 도메인(엔지니어링, 프로덕트, 디자인, 콘텐츠, SEO, 보안, 인프라, 데이터)을 고려하여 가장 적합한 에이전트에게 할당하세요.
-- 파일 충돌을 막기 위해 동일한 파일을 수정해야 하는 작업은 기본적으로 순차적(Sequential)으로 배치하세요. **하지만 Backend 에이전트와 Frontend 에이전트의 작업은 서로 독립적이므로 백그라운드에서 동시에 병렬(Parallel)로 실행하도록 지시하세요.** 양쪽 작업이 모두 `[completed]` 상태가 된 것을 확실히 검증한 후에만 다음 순차적 단계로 넘어가야 합니다.
+본 가이드는 **Orchestrator**가 복잡한 프로젝트를 세부 과업으로 분해하고, 하위 에이전트에게 **완벽한 문맥(Context)**을 전달하여 작업 성공률을 극대화하기 위한 절대 규칙입니다.
 
-## 2. 완벽한 문맥 주입 (Context Injection)
-서브 에이전트에게 `.json` 작업 지시서를 작성할 때 다음 항목을 반드시 포함하세요:
-- **선행 작업 결과 (Upstream Context):** 이전 에이전트가 내린 결정과 그 이유.
-- **작업 범위 (Scope Boundaries):** 에이전트가 건드려서는 안 되는 파일이나 영역.
-- **검증 기준 (Validation Criteria):** 이 작업이 성공했다고 판단할 수 있는 명확한 조건.
+## 1. 도메인 기반 작업 분해 (Domain-Specific Decomposition)
+- **Expert Alignment**: 18개 에이전트의 전문 도메인(기획, 설계, 디자인, FE/BE 구현, 보안, 인프라, 데이터, 문서화)을 고려하여 가장 적합한 페르소나에게 할당하라.
+- **Dependency Management**: 동일 파일을 수정하는 작업은 '순차적(Sequential)'으로 배치하되, **Backend(`backend`, `dba`)와 Frontend(`frontend`, `designer`) 작업은 백그라운드에서 반드시 '병렬(Parallel)'로 실행하라.** - **Synchronization**: 병렬 작업 시 `Wait-Job` 등을 통해 양쪽의 `[completed]` 상태를 모두 검증한 후에만 다음 단계(통합 리뷰/QA)로 진입하라.
 
-## 3. 에러 발생 시 처리 (Fallback Strategy)
-하위 에이전트가 실패 상태(`[failed]`)를 반환하면 즉시 사용자에게 종료를 보고하지 마세요. 
-어떤 부분에서 실패했는지 분석하여 최대 2회(Max Retries)까지 지시서를 수정해 재시도를 지시해야 합니다.
 
-## 🚨 안티 패턴 (Do Not)
-- 전체 문맥을 생략한 채, "이 파일을 고치세요"라는 단편적 지시만 내리지 마세요.
-- 여러 서브 에이전트를 지나치게 많이 엮어 데드락(Deadlock)에 빠지게 하지 마세요.
+
+## 2. 완벽한 문맥 주입 (High-Fidelity Context Injection)
+서브 에이전트에게 지시(`gemini -p ...`)할 때, 다음 3가지 핵심 요소를 지시문에 반드시 포함하라.
+- **[Upstream Context]**: 선행 에이전트(예: PM, Architect)가 내린 결정 사항과 그 이유(Why).
+- **[Scope Boundaries]**: 작업 대상 파일과 절대 수정해서는 안 되는 금지 영역(Forbidden Zones).
+- **[Definition of Done]**: 작업 완료를 판단할 명확한 검증 기준(예: 특정 API 응답 확인, 린트 통과).
+
+## 3. 회복 탄력성 전략 (Fallback & Retry Strategy)
+에이전트가 실패(`[failed]`)를 반환할 경우의 대응 수칙이다.
+- **Root Cause Analysis**: 즉시 보고하지 말고, `@.gemini/skills/persistent-debugging-protocol`을 활용하여 실패 원인을 분석하라.
+- **Max Retries**: 분석된 원인을 바탕으로 지시서(Prompt)를 보정하여 **최대 2회**까지 재시도를 지시하라. 
+- **Escalation**: 2회 재시도 후에도 실패 시, 모든 로그를 요약하여 사용자에게 최종 보고하고 개입을 요청하라.
+
+## 🚨 안티 패턴 (Strictly Forbidden)
+- **Context-Free Tasking**: "이 파일을 고치세요"와 같은 단편적 지시. (반드시 전체 그림 속에서의 역할을 설명하라.)
+- **Deadlock Assignment**: 여러 에이전트가 서로의 산출물을 기다리게 하여 전체 공정을 멈추게 하는 설계.
+- **Blind Trust**: 하위 에이전트의 완료 보고를 검증 없이 그대로 수용하는 행위.

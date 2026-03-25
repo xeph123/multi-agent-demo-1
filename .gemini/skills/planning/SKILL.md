@@ -1,35 +1,43 @@
 ---
-name: Planning & Orchestration Methodology
-description: 기능 명세 작성, 단계별 계획 수립 및 에이전트 간 조율 방법론
-target_agents: [Product Manager, Orchestrator]
+name: planning
+description: "기획(PM) 및 조율(Orchestrator)을 위한 단계별 태스크 관리 및 병렬 실행 표준 가이드"
+metadata:
+  version: "1.3.0"
+  workflow: "Sequential Planning + Parallel Implementation"
 ---
-# Planning & Orchestration Methodology (기획 및 조율 방법론)
 
-이 스킬은 Product Manager와 Orchestrator 에이전트가 작업을 계획할 때 사용합니다.
+# Planning & Orchestration Methodology (기획 및 조율 표준)
 
-## 1. 기능 명세 (Feature Specs) 작성 규칙
-- 모든 기능 기획은 `spec.md`에 요구사항, UX 플로우, 제약 조건을 명확히 기록해야 합니다.
-- `spec.md` 작성 시 다음 목차 템플릿을 준수하세요: `목적(Why)`, `기능 명세(What)`, `데이터 흐름(Data Flow)`, `예외 케이스(Edge Cases)`.
+본 가이드는 **Product Manager(PM)**와 **Orchestrator**가 프로젝트의 생애주기를 관리하고 에이전트 간의 작업 충돌을 방지하기 위해 준수해야 하는 운영 원칙입니다.
 
-## 2. 단계별 계획 (Phased Plans)
-- 작업 큐(Task Queue) 관리 및 실행 규칙 (State Management)
-  1. 작업 파일 생성 (Task Generation): 새로운 단계가 기획될 때마다 `.gemini/agents/tasks/` 폴더에 `task-<순번>-<subagent>.json` 파일을 누적 생성하라. 초기 `status`는 `pending`으로 설정하고 **작업 생성 시간(`created_at`, 한국 시간 기준)** 을 반드시 기록하라.
-  2. 실행 중 상태 (Running): 하위 에이전트를 셸 명령어로 호출하여 구동시키기 **직전**, 오케스트레이터 스스로 파일 수정 도구를 써서 파일의 `status`를 `running`으로 반드시 업데이트 하라. (작동 중임을 명시하기 위함)
-  3. 상태 추적 (Completion): 서브 프로세스(하위 에이전트 작업)가 끝나면, 서브 에이전트에게 맡기지 말고 **반드시 오케스트레이터가 직접 파일 수정 도구를 사용하여** 파일의 `status`를 `completed` 또는 `failed`로 최종 업데이트하고, **작업 완료 시간(`completed_at`, 한국 시간 기준)** 을 기록하라. 상태가 검증된 후 다음 task JSON 파일을 생성해야 한다.
-  3. `task.json` 구조 예시:
-     ```json
-     {
-       "task_id": "task-1",
-       "description": "스킬 문서 포맷 표준화 로직 구현",
-       "assigned_agent": "Frontend Specialist",
-       "status": "completed",
-       "created_at": "YYYY-MM-DD HH:mm:ss",
-       "completed_at": "YYYY-MM-DD HH:mm:ss",
-       "result": "작업 완료 내용"
-     }
-     ```
-- 기획(Plan) -> 디자인(Design) -> 구현(Implement) -> 리뷰(Review)의 단계를 강제하여 에이전트 간의 작업 충돌을 방지하세요. **단, 구현(Implement) 단계에서 Backend 작업과 Frontend 작업은 백그라운드에서 병렬(Parallel)로 동시에 진행시키고, 두 작업이 모두 완료(`[completed]`)된 후에 다음 순차적 단계로 넘어가야 합니다.**
+## 1. 정교한 기능 명세 (Feature Spec) 작성
+- **Spec First**: 모든 개발은 `src/docs/spec.md`가 확정된 후 시작한다.
+- **Co-Authoring**: `@.gemini/skills/doc-coauthoring`을 활용하여 사용자로부터 컨텍스트를 완벽히 추출하라.
+- **Template**: 목적(Why), 기능 명세(What), 데이터 흐름(Data Flow), 예외 케이스(Edge Cases), 종료 조건(Definition of Done)을 반드시 포함하라.
 
-## 🚨 안티 패턴 (Do Not)
-- 명확한 종료 조건(Definition of Done) 없이 에이전트에게 모호한 지시를 내리지 마세요.
-- 동일한 파일을 수정해야 하는 작업을 여러 에이전트에게 동시에 병렬로 할당하지 마세요. (Frontend와 Backend처럼 작업 영역이 명확히 분리된 경우에만 병렬 처리를 허용합니다.)
+
+
+## 2. 태스크 라이프사이클 및 상태 관리 (Task Queue)
+오케스트레이터는 `.gemini/agents/tasks/` 폴더 내의 JSON 파일을 통해 모든 하위 에이전트의 상태를 **'직접'** 관리한다.
+
+1. **[Pending] (생성)**: 새로운 단계 기획 시 `task-<순번>-<agent>.json` 생성.
+    * `created_at`: 반드시 셸에서 `Get-Date -Format "yyyy-MM-dd HH:mm:ss"`를 실행한 실제 시간을 기록.
+2. **[Running] (실행 직전)**: 하위 에이전트 호출(`gemini -p ...`) **직전**에 오케스트레이터가 직접 `status`를 `running`으로 변경.
+3. **[Completed/Failed] (사후 검증)**: 에이전트 작업 종료 후, 오케스트레이터가 결과물을 검토하고 `status`와 `completed_at`(실제 시간)을 직접 업데이트.
+
+## 3. 단계별 강제 워크플로우 (Phased Execution)
+작업의 안정성을 위해 다음 순서를 강제하며, 각 단계 종료 시 `@.gemini/skills/context-manager`로 `context.md`를 갱신하라.
+
+| 단계 | 수행 내용 | 에이전트 |
+| :--- | :--- | :--- |
+| **1. Plan** | 요구사항 분석 및 `spec.md` 작성 | PM |
+| **2. Design** | API 명세(`architect`) 및 디자인 토큰(`designer`) 확정 | Architect, Designer |
+| **3. Implement** | **[Parallel]** Backend와 Frontend 코딩 동시 진행 | BE/FE Specialists |
+| **4. Review** | 코드 리뷰 및 통합 테스트 (최대 3회 재작업) | Debugger/QA |
+
+
+
+## 🚨 안티 패턴 (Strictly Forbidden)
+- **Vague Instructions**: 명확한 종료 조건(DoD) 없이 에이전트에게 "알아서 해줘"라고 지시하는 행위.
+- **Race Condition**: 동일한 파일을 수정해야 하는 태스크를 서로 다른 에이전트에게 병렬로 할당하는 행위.
+- **Shadow Completion**: 오케스트레이터의 확인 없이 하위 에이전트가 스스로 태스크를 완료 처리하는 행위.
