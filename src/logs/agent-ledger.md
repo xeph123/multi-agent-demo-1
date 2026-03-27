@@ -176,3 +176,25 @@
 | 2026-03-27 17:24:09 | Backend/DBA | admin@lounge.io 계정 관리자 승격 스크립트 실행 | In Progress | - |
 
 | 2026-03-27 17:24:20 | Backend/DBA | admin@lounge.io 계정 관리자 승격 완료 | Done | - |
+
+| 2026-03-27 17:38:35 | Frontend | 사용자 프로필(profile.tsx) 그리드/목록 뷰 토글 및 무한 스크롤/페이지네이션 추가 | In Progress | - |
+
+| 2026-03-27 17:40:58 | Frontend | 사용자 프로필(profile.tsx) 그리드/목록 뷰 토글 및 페이지네이션/무한스크롤 구현 완료 | Done | - |
+
+| 2026-03-27 17:43:59 | Frontend | 사용자 프로필(profile.tsx) 입력 폼 Label 및 Button 한국어화(Korean Localization) | In Progress | - |
+
+| 2026-03-27 17:44:18 | Frontend | 사용자 프로필 입력 폼 한국어화 완료 | Done | - |
+
+| 2026-03-27 17:46:39 | Scout | 메인화면 글 작성 버튼(Start a Story) 하이엔드/은유적 대체 문구 아이디어 제안 | In Progress | - |
+
+| 2026-03-27 17:47:36 | Scout | 메인화면 글 작성 버튼 카피라이팅 추천 완료 | Done | - |
+
+| 2026-03-27 17:49:38 | Frontend | 메인화면 글 작성 버튼 카피라이팅 'Inscribe the Silence'로 변경 | In Progress | - |
+
+| 2026-03-27 17:52:01 | Frontend | 메인화면 마스트헤드(YNW...) 삭제 및 주요 버튼 자간(Tracking) 규칙 통일 | In Progress | - |
+
+| 2026-03-27 17:52:11 | Frontend | 메인화면 마스트헤드 삭제 및 버튼 타이포그래피 자간(Tracking) 규칙 통일 완료 | Done | - |
+
+| 2026-03-27 17:53:59 | Frontend | 주요 버튼 호버 인터랙션 통일 (Underline Hover Effect) 반영 | In Progress | - |
+
+| 2026-03-27 17:54:05 | Frontend | 주요 버튼 호버 인터랙션(Underline) 통일 완료 | Done | - |

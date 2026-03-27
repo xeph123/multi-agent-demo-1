@@ -146,25 +146,16 @@ export default function HomePage() {
         <h1 className="text-7xl md:text-9xl font-black tracking-tighter uppercase font-serif">
           THE <br /> LOUNGE
         </h1>
-        <div className="flex items-center justify-between border-y border-border py-6 mt-8">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] opacity-60 font-sans">
-            YNW CORPORATE MAGAZINE / ISSUE NO. 01
-          </p>
-          <div className="hidden gap-12 text-xs font-black uppercase tracking-[0.3em] sm:flex font-sans">
-            <span>Mar 2026</span>
-            <span>Vol. 42</span>
-          </div>
-        </div>
+        {/* Minimalist Border Only - Removed Masthead Text for Extreme Emptiness */}
+        <div className="border-b border-border mt-12 mb-8"></div>
       </section>
 
-      <div className="flex justify-end pt-16 pb-8">
-        <Link to="/post/create" className="group relative bg-transparent border-none outline-none cursor-pointer flex items-center gap-4">
-          <span className="font-serif text-[24px] font-bold italic uppercase transition-all duration-500 ease-in-out group-hover:tracking-[0.1em] text-primary">
-            <span className="text-3xl">S</span>tart a Story
+      <div className="flex justify-end pt-8 pb-16">
+        <Link to="/post/create" className="group relative flex items-center gap-6 pb-2 border-b-2 border-transparent hover:border-primary transition-all duration-500">
+          <span className="font-serif text-xl md:text-2xl font-bold italic uppercase tracking-[0.2em] group-hover:tracking-[0.3em] transition-all duration-500 ease-in-out text-primary">
+            <span className="text-3xl md:text-4xl">I</span>nscribe the Silence
           </span>
-          <div className="w-12 h-12 flex items-center justify-center border border-primary rounded-none group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-            <ArrowRight className="w-5 h-5" />
-          </div>
+          <ArrowRight className="w-6 h-6 text-primary transform group-hover:translate-x-2 transition-transform duration-500" />
         </Link>
       </div>
 
@@ -173,10 +164,11 @@ export default function HomePage() {
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase font-serif">
             Top <br /> Stories
           </h2>
-          <Link to="/archive">
-            <Button variant="ghost" className="h-auto px-0 py-2 text-xl md:text-2xl font-serif italic font-bold tracking-[0.2em] uppercase hover:bg-transparent hover:tracking-[0.3em] transition-all duration-500 rounded-none border-b-2 border-transparent hover:border-primary group hover:text-black">
-              View All <ArrowRight className="ml-4 h-6 w-6 transform group-hover:translate-x-2 transition-transform duration-300" />
-            </Button>
+          <Link to="/archive" className="group flex items-center gap-4 pb-2 border-b-2 border-transparent hover:border-primary transition-all duration-500">
+            <span className="text-xl md:text-2xl font-serif italic font-bold tracking-[0.2em] group-hover:tracking-[0.3em] uppercase transition-all duration-500 text-foreground group-hover:text-primary">
+              View All
+            </span>
+            <ArrowRight className="w-6 h-6 text-foreground group-hover:text-primary transform group-hover:translate-x-2 transition-transform duration-500" />
           </Link>
         </div>
 
