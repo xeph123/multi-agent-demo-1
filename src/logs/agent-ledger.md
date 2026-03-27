@@ -172,3 +172,7 @@
 | 2026-03-27 17:16:07 | Frontend | 검색 화면(SearchOverlay) 마우스 오버 시 폰트 이탤릭체 변경(group-hover:italic) 효과 제거 | In Progress | - |
 
 | 2026-03-27 17:16:20 | Frontend | 검색 화면 폰트 이탤릭체 변경 효과 제거 완료 | Done | - |
+
+| 2026-03-27 17:24:09 | Backend/DBA | admin@lounge.io 계정 관리자 승격 스크립트 실행 | In Progress | - |
+
+| 2026-03-27 17:24:20 | Backend/DBA | admin@lounge.io 계정 관리자 승격 완료 | Done | - |
