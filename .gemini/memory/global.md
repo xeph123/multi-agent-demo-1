@@ -26,21 +26,21 @@
 
 모든 에이전트는 다음 폴더를 프로젝트의 '공통 기억 저장소' 및 '의사결정 엔진'으로 활용한다:
 
-### 📋 4.1. Planning Protocol (`.gemini/agents/plans/`)
-- **버전 관리**: 모든 주요 마일스톤이나 복합 태스크는 `plans/`에 로드맵을 작성하고 승인받아야 한다.
-- **실패 분석**: 계획대로 진행되지 않을 경우, `debugger`는 수정된 계획을 `plans/`에 리플래닝(Re-planning)하여 기록한다.
+### 📋 4.1. Planning Protocol (`src/agents/plans/`)
+- **버전 관리**: 모든 주요 마일스톤이나 복합 태스크는 `src/agents/plans/`에 로드맵을 작성하고 승인받야 한다.
+- **실패 분석**: 계획대로 진행되지 않을 경우, `debugger`는 수정된 계획을 `src/agents/plans/`에 리플래닝(Re-planning)하여 기록한다.
 
-### 🧠 4.2. Memory Protocol (`.gemini/memory/`)
-- **[Ephemeral Context]**: 에이전트 간 핸드오프 시 필요한 단기 맥락(API 데이터 타입, UI 컬러값 등)은 `memory/` 하위의 전용 마크다운 파일에 기록하여 공유한다.
-- **[Knowledge Retention]**: 프로젝트 전체에 영향을 미치는 기술적 결정 사항은 반드시 `memory/global.md`의 'Project Decisons' 섹션에 누적 기록한다.
+### 🧠 4.2. Memory Protocol (`src/agents/memory/`)
+- **[Ephemeral Context]**: 에이전트 간 핸드오프 시 필요한 단기 맥락(API 데이터 사양, 세부 UI 파라미터 등)은 `src/agents/memory/` 하위의 전용 마크다운 파일에 기록하여 공유한다.
+- **[Knowledge Retention]**: 프로젝트의 영구적인 기술 결정 사항은 반드시 `.gemini/memory/global.md`의 'Project Decisions' 섹션에 기록하되, 작업 과정의 휘발성 데이터는 `src/agents/memory/`를 활용하라.
 
-### 📝 4.3. Logging Protocol (`.gemini/logs/`)
-- **[Incident Reports]**: 태스크가 `failed` 처리될 경우, `debugger`는 `logs/errors/`에 공식적인 사후 분석 보고서(RCA)를 작성하고, 다른 에이전트들이 이를 학습하여 동일한 실수를 반복하지 않도록 한다.
-- **[Traceability]**: 중차대한 시스템 변경 시, 명령어 실행 추적 로그를 `logs/traces/`에 정확한 날짜와 시각을 포함하여 남겨 시스템 복구의 근거로 삼는다.
+### 📝 4.3. Logging Protocol (`src/logs/`)
+- **[Incident Reports]**: 태스크가 `failed` 처리될 경우, `debugger`는 `src/logs/errors/`에 공식적인 사후 분석 보고서(RCA)를 작성하고, 다른 에이전트들이 이를 학습하여 동일한 실수를 반복하지 않도록 한다.
+- **[Traceability]**: 중차대한 시스템 변경 시, 명령어 실행 추적 로그를 `src/logs/traces/`에 정확한 날짜와 시각을 포함하여 남겨 시스템 복구의 근거로 삼는다.
 
-### 📜 4.4. Delegation Ledger Protocol (`.gemini/logs/delegation-ledger.md`)
-- **[Call Registry]**: 모든 에이전트 간 서브에이전트 호출 시 다음과 같은 포맷으로 호출 지시 내용이 포함된 장부를 기록한다.
-- **포맷**: `| YYYY-MM-DD HH:mm:ss | 호출자 | 수신자 | 태스크 ID | 호출 지시 내용 (Summary) | 결과 |`
+### 📜 4.4. Agent Delegation Ledger Protocol (`src/logs/agent-ledger.md`)
+- **[Call Registry]**: 모든 에이전트 간 서브에이전트 호출 시 다음과 같은 포맷으로 호출 지시 내용이 포함된 장부를 `src/logs/agent-ledger.md`에 기록한다.
+- **포맷**: `| YYYY-MM-DD HH:mm:ss | 호출자 | 수신자 | 태스크 ID | 호출 지시 내용 (Summary) | 결과 | 토큰 (P/C/T) |`
 - **목적**: 프로젝트 전체의 작업 흐름(Flux)을 단일 파일에서 요약 파악할 수 있도록 한다.
 
 ---

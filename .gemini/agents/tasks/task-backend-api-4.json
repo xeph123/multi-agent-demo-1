@@ -1,0 +1,20 @@
+{
+  "task_id": "task-backend-api-4",
+  "agent": "backend",
+  "status": "pending",
+  "created_at": "2026-03-27T10:53:37",
+  "objective": "Express 및 Multer를 사용하여 게시글 작성, 사진 업로드, 댓글 생성/조회 API를 구현하라. 작업 전 반드시 `src/docs/api-spec.md` 명세를 숙지하고 100% 준수하라.",
+  "upstream_context": [
+    "task-api-spec-1",
+    "task-db-setup-3"
+  ],
+  "scope_boundaries": [
+    "src/server/ 하위 영역에서 백엔드 로직만 개발",
+    "프론트엔드 코드 접근 및 수정 금지"
+  ],
+  "validation_criteria": [
+    "Multer와 UUID를 이용한 안전한 이미지 파일 난독화 업로드 구현",
+    "DB 트랜잭션 적용 및 DB 실패 시 물리 업로드 파일 롤백(삭제) 로직 포함",
+    "API 명세서(api-spec.md)의 엔드포인트 및 요청/응답 규격과 100% 일치"
+  ]
+}

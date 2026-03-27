@@ -1,0 +1,17 @@
+{
+  "task_id": "task-deployment-10",
+  "agent": "devops",
+  "status": "pending",
+  "created_at": "2026-03-27T10:53:37",
+  "objective": "프로덕션 환경을 대비한 앱 빌드 스크립트를 작성하고 정적 파일 서빙 보안 설정을 완료하라.",
+  "upstream_context": [
+    "task-documentation-9"
+  ],
+  "scope_boundaries": [
+    "배포용 빌드 스크립트 작성 및 src/server/의 보안 관련 미들웨어 로직 수정만 허용"
+  ],
+  "validation_criteria": [
+    "프론트엔드 최적화 빌드 명령 및 파이프라인(스크립트) 설정 완료",
+    "업로드 디렉토리에 대한 실행 권한 제거 방지책 및 helmet 적용 완료"
+  ]
+}

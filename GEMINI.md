@@ -27,11 +27,12 @@
 - **`.gemini/settings.json`**: 실험적인 에이전트 기능을 활성화합니다 (`"experimental.enableAgents": true`).
 - **`.env`**: `GEMINI_API_KEY`와 같은 환경 변수를 저장합니다.
 
-### 에이전트 인프라 (`.gemini/agents/`)
-- **`tasks/`**: 에이전트의 작업 정의(Task definitions)를 저장하는 용도입니다.
-- **`plans/`**: 에이전트가 생성한 구현 계획(Implementation plans)을 저장하는 용도입니다.
-- **`workspace/`**: 에이전트가 내부적으로 사용하는 임시 작업 영역입니다. (실제 소스코드는 이 폴더 바깥에 생성합니다.)
-- **`logs/`**: 에이전트 실행 로그가 저장됩니다.
+### 에이전트 인프라 (`src/agents/` & `src/logs/`)
+- **`src/agents/tasks/`**: 에이전트의 작업 정의(Task definitions)를 저장하는 용도입니다.
+- **`src/agents/plans/`**: 에이전트가 생성한 구현 계획(Implementation plans)을 저장하는 용도입니다.
+- **`src/logs/agent-ledger.md`**: 에이전트 위임 내역을 기록하는 장부입니다.
+- **`src/logs/errors/`**: 에이전트 실행 로그 및 오류 사후 분석 보고서(RCA)가 저장됩니다.
+- **`src/agents/workspace/`**: 에이전트가 내부적으로 사용하는 임시 작업 영역입니다. (실제 소스코드는 이 폴더 바깥에 생성합니다.)
 
 ### 명령어 (`.gemini/commands/agents/`)
 다양한 전문 분야의 에이전트들이 정의된 `.toml` 파일들입니다.
@@ -60,7 +61,7 @@
 
 ### 개발 컨벤션 (Development Conventions)
 1. **단계별 계획 (Phased Plans) 준수**: `planning.md`에 따라 [기획 -> 구현 -> 리뷰] 단계를 철저히 지킵니다.
-2. **작업 정의**: 모든 작업은 ID를 부여받고 `.gemini/agents/tasks/`에 명확히 기록되어야 합니다.
+2. **작업 정의**: 모든 작업은 ID를 부여받고 `src/agents/tasks/`에 명확히 기록되어야 합니다.
 3. **도구 자동 승인**: 서브 에이전트 호출 시 `-y` 플래그를 사용하여 흐름이 끊기지 않도록 합니다.
 4. **결과물 위치**: 에이전트가 생성하는 모든 실제 서비스용 소스코드는 `.gemini` 디렉토리 외부(예: `/frontend`, `/backend`, `/src` 등)에 생성해야 합니다.
 

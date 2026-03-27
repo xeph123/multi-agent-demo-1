@@ -1,0 +1,18 @@
+{
+  "task_id": "task-bug-fix-8",
+  "agent": "debugger",
+  "status": "pending",
+  "created_at": "2026-03-27T10:53:37",
+  "objective": "QA 리포트 결과를 분석하여 결함을 수정하고 시스템 최적화를 진행하라. 특히 데이터-파일 불일치 등의 엣지 케이스를 철저히 조치하라.",
+  "upstream_context": [
+    "task-qa-testing-7"
+  ],
+  "scope_boundaries": [
+    "QA 리포트에 명시된 src/ 하위의 컴포넌트 및 API 버그 관련 코드만 수정 허용",
+    "정상 동작하는 기능의 불필요한 리팩토링 금지"
+  ],
+  "validation_criteria": [
+    "QA 단계에서 발견 및 리포트된 모든 크리티컬 버그 수정 완료",
+    "데이터베이스 트랜잭션 오류 시의 물리 이미지 롤백 동작 완벽 방어 검증"
+  ]
+}

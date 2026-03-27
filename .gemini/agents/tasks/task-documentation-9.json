@@ -1,0 +1,18 @@
+{
+  "task_id": "task-documentation-9",
+  "agent": "docs",
+  "status": "pending",
+  "created_at": "2026-03-27T10:53:37",
+  "objective": "프로젝트 시스템 아키텍처, 최종 API 명세, 데이터베이스 스키마 및 가이드 등 운영/인수인계를 위한 문서를 갱신하라.",
+  "upstream_context": [
+    "task-bug-fix-8"
+  ],
+  "scope_boundaries": [
+    "src/docs/ 하위의 마크다운 파일만 생성 및 수정 가능",
+    "시스템 코드 변경 금지"
+  ],
+  "validation_criteria": [
+    "최종 구현본과 일치하는 최신 API 및 DB 스키마 명세서화 완료",
+    "실행 및 빌드를 위한 개발자용 셋업 가이드 작성 완료"
+  ]
+}

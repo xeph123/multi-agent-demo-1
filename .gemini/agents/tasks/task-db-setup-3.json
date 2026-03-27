@@ -1,0 +1,19 @@
+{
+  "task_id": "task-db-setup-3",
+  "agent": "dba",
+  "status": "pending",
+  "created_at": "2026-03-27T10:53:37",
+  "objective": "SQLite(better-sqlite3) 기반의 데이터베이스 스키마 및 초기화 스크립트를 작성하라.",
+  "upstream_context": [
+    "src/docs/spec.md",
+    "src/docs/research.md"
+  ],
+  "scope_boundaries": [
+    "src/server/db/ 영역 하위에만 파일 생성 가능",
+    "비즈니스 로직이나 API 엔드포인트 수정 금지"
+  ],
+  "validation_criteria": [
+    "posts, comments, images 관련 테이블 생성 스크립트 작성 완료",
+    "WAL 모드 최적화 및 foreign_keys 활성화 구문 포함 여부 검증"
+  ]
+}

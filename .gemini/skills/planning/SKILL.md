@@ -18,7 +18,7 @@ metadata:
 
 
 ## 2. 태스크 라이프사이클 및 상태 관리 (Task Queue)
-오케스트레이터는 `.gemini/agents/tasks/` 폴더 내의 JSON 파일을 통해 모든 하위 에이전트의 상태를 **'직접'** 관리한다.
+오케스트레이터는 `src/agents/tasks/` 폴더 내의 JSON 파일을 통해 모든 하위 에이전트의 상태를 **'직접'** 관리한다.
 
 1. **[Pending] (생성)**: 새로운 단계 기획 시 `task-<순번>-<agent>.json` 생성.
     * `created_at`: 반드시 셸에서 `Get-Date -Format "yyyy-MM-dd HH:mm:ss"`를 실행한 실제 시간을 기록.

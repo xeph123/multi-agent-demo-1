@@ -1,0 +1,19 @@
+{
+  "task_id": "task-frontend-integration-6",
+  "agent": "frontend",
+  "status": "pending",
+  "created_at": "2026-03-27T10:53:37",
+  "objective": "프론트엔드 UI 컴포넌트와 백엔드 API를 연동하여 실제 데이터를 렌더링하고 사용자 인터랙션 및 상태 관리를 구현하라.",
+  "upstream_context": [
+    "task-backend-api-4",
+    "task-frontend-ui-5"
+  ],
+  "scope_boundaries": [
+    "src/client/ 하위의 상태 관리, 서비스/훅(API 호출) 로직만 작성",
+    "서버측 비즈니스 로직 수정 금지"
+  ],
+  "validation_criteria": [
+    "게시글 폼 제출 시 이미지와 텍스트 데이터가 Multipart/form-data로 성공적으로 전송됨",
+    "댓글 작성 시 목록 갱신 등 실시간 상태 반영 UI 정상 동작"
+  ]
+}
